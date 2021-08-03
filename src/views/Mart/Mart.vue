@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Merchandise</h1>
+    <h1>Mart</h1>
   <p>
     <ul>
       <li>Email: {{email}}</li>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Merchandise',
+  name: 'Mart',
   data(){
     return {
       email: 'maegan@maeganwilson.com',

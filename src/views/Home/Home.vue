@@ -1,45 +1,54 @@
 <template>
 	<div id="Home">
-		<Carousel :sliders="sliders"></Carousel>
+		<Carousel :sliders="sliders" widthString=-100></Carousel>
 		<div class="home-mid-card">
 			<div class="home-card" @click="toOrderPage">
-				<img src="../assets/imges/home/home_icon_ziqu1.png"><br>
+				<img src="@/assets/imges/home/home_icon_ziqu1.png"><br>
 				<span class="card-title">门店自取</span><br>
 				<span class="normal-text">下单免排队</span><br>
 			</div>
 			<div class="line"></div>
 			<div class="home-card">
-				<img src="../assets/imges/home/home_icon_waimai1.png"><br>
+				<img src="@/assets/imges/home/home_icon_waimai1.png"><br>
 				<span class="card-title">外卖</span><br>
 				<span class="normal-text">无接触派送，送喜到家</span><br>
 			</div><br>
 			<div class="line2"></div>
 			<div class="card-bottom">
-				<img src="../assets/imges/home/home_icon_qiye1.png" >
+				<img src="@/assets/imges/home/home_icon_qiye1.png" >
 				<span class="left-text">好友拼单</span>
 				<span class="right-text">拼单喝茶，分账更方便</span>
 			</div>
 		</div>
 		
 		<div class="cards">
-			aaa
+			<el-card class="little-card">
+			  <img src="@/assets/imges/home/1.png" style="height: 120px;"/>
+			</el-card>
+			<el-card class="little-card">
+			  <img src="@/assets/imges/home/2.png" style="height: 120px"/>
+			</el-card>
+			<el-card class="little-card">
+			  <img src="@/assets/imges/home/3.png" style="height: 120px"/>
+			</el-card>
 		</div>
+		
 	</div>
 </template>
 
 <script>
-import Carousel from "./Carousel.vue"
+import Carousel from "@/components/Carousel.vue"
 
 export default {
 	name: 'Home',
 	data() {
 		return {
 			sliders: [
-				require("../assets/imges/home/Carousel/1e8d24fc02f8457d8c819ee57a92e4d4.jpg"),
-				require("../assets/imges/home/Carousel/3fae323602564363ae53b649d14b3df2.jpg"),
-				require("../assets/imges/home/Carousel/9ab5ee6d6c1545429f968cbaa780f01b.jpg"),
-				require("../assets/imges/home/Carousel/62e4ac115dfd44d3ac04315e5e32f44e.jpg"),
-				require("../assets/imges/home/Carousel/f466315ce95e4f6cba0525df7b1eabb4.png")
+				require("@/assets/imges/home/Carousel/1e8d24fc02f8457d8c819ee57a92e4d4.jpg"),
+				require("@/assets/imges/home/Carousel/3fae323602564363ae53b649d14b3df2.jpg"),
+				require("@/assets/imges/home/Carousel/9ab5ee6d6c1545429f968cbaa780f01b.jpg"),
+				require("@/assets/imges/home/Carousel/62e4ac115dfd44d3ac04315e5e32f44e.jpg"),
+				require("@/assets/imges/home/Carousel/f466315ce95e4f6cba0525df7b1eabb4.png")
 			]
 		}
 	},
@@ -50,12 +59,16 @@ export default {
 	},
 	components: {
 		Carousel,
+	},
+	mounted() {
+		console.log(require("@/assets/imges/home/Carousel/1e8d24fc02f8457d8c819ee57a92e4d4.jpg"))
+		console.log(require("@/assets/imges/home/3.png"))
 	}
 }
 </script>
 
 <style scoped>
-	#Carousel{
+	#Home #Carousel{
 	  left: 0;
 	  width: 100vw;
 	  height: 35vh;
@@ -137,9 +150,24 @@ export default {
 		float: right;
 		font-size: 8px;
 	}
-	
+	.cards * {
+		background-color: inherit;
+	}
 	.cards {
 		position: absolute;
 		top: 65vh;
+		width: 97vw;
+		display:-webkit-flex;
+		display: flex;
+		padding: 1vw;
+	}
+	
+	.little-card /deep/ .el-card__body {
+		width: 30vw;
+		padding: 0;
+		margin: 0 1vw;
+	}
+	.little-card .img {
+		width: 100%;
 	}
 </style>

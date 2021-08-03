@@ -28,13 +28,17 @@ export default {
 	props: {
 		sliders: {
 			type:Array
+		},
+		widthString: {
+			type:String
 		}
 	},
 	data() {
 		return {
 			currentIndex: 1,
-			distance: -100,
-			transitionEnd : true
+			distance: 0,
+			transitionEnd : true,
+			imgNum: 0
 		}
 	},
 	computed:{
@@ -49,17 +53,12 @@ export default {
 			if (!this.transitionEnd) return
 			this.transitionEnd = false
 			this.currentIndex -= num * direction
-			if (this.currentIndex > 5) 
+			if (this.currentIndex > this.imgNum) 
 				this.currentIndex = 1
 			else if (this.currentIndex < 1) 
-				this.currentIndex = 5
+				this.currentIndex = this.imgNum
 			
-			// this.distance = this.distance + direction * 100;
-			// if (this.distance < this.sliders.length * (-100))
-			// 	this.distance = -100
-			// else if (this.distance > -100)
-			// 	this.distance = this.sliders.length * (-100)
-			var desDistance = this.distance + direction * 100 * num;
+			var desDistance = this.distance + (-direction) * this.width * num;
 			this.animate(desDistance, direction, num)
 		},
 		animate(distance, direction, speed) {
@@ -69,10 +68,10 @@ export default {
 					this.animate(distance, direction, speed)
 				}, 20)
 			} else {
-				if (distance < this.sliders.length * (-100))
-					this.distance = -100
-				else if (this.distance > -100)
-					this.distance = this.sliders.length * (-100)
+				if (distance < this.sliders.length * (this.width))
+					this.distance = this.width
+				else if (this.distance > this.width)
+					this.distance = this.sliders.length * (this.width)
 				this.transitionEnd = true
 			}
 		},
@@ -97,12 +96,16 @@ export default {
 			}
 			var direction = index - this.currentIndex > 0 ? -1 : 1;
 			var num = Math.abs(index - this.currentIndex)
+			// console.log('[jump]this.move(' + String(num) + ', ' + String(direction) + ')')
 			this.move(num, direction)
 			this.play();
 		}
 	},
 	mounted: function() {
+		this.width = Number(this.widthString)
+		this.distance = Number(this.widthString)
 		console.log(this.sliders)
+		this.imgNum = this.sliders.length
 		this.play()
 		window.onblur = function() { this.stop() }.bind(this)
 		window.onfocus = function() { this.play() }.bind(this)
@@ -119,30 +122,30 @@ export default {
 	ol,ul{
 	  list-style: none;
 	}
-	.window{
+	#Carousel .window{
 	  position:relative;
 	  width: 100%;
 	  height: 100%;
  	  margin:0 auto;
 	  overflow:hidden;
 	}
-	.container{
+	#Carousel .container{
 	  display:flex;
 	  position:absolute;
 	}
-	.container img {
+	#Carousel .container img {
 		width: 100vw;
 	}
 	img{
 	  user-select: none;
 	}
-	.dots{
+	#Carousel .dots{
 	    position:absolute;
 	    bottom:10px;
 	    left:50%;
 	    transform:translateX(-50%);
 	  }
-	.dots li{
+	#Carousel .dots li{
 	  display:inline-block;
 	  width:8px;
 	  height:8px;
@@ -153,7 +156,7 @@ export default {
 	  opacity: 0.5;
 	  cursor:pointer;
 	}
-	.dots .dotted{
+	#Carousel .dots .dotted{
 	  opacity: 1;
 	}
 </style>

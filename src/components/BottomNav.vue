@@ -50,9 +50,9 @@
 					},
 					{
 						id: 4,
-						name: 'Self',
+						name: 'Mine',
 						text: '我的',
-						url: '/Self',
+						url: '/Mine',
 						imgUrl: require('../assets/imges/BottomNav/my.png'),
 						imgChosenUrl: require('../assets/imges/BottomNav/my_selected.png')
 					}
@@ -62,6 +62,9 @@
 		methods: {
 			choosePage: function(id) {
 				this.chosenPage = id
+			},
+			handleScroll: function() {
+				let scroll = 1
 			}
 		}
 	}
@@ -69,7 +72,6 @@
 
 <style scoped>
 	.navbar {
-		position: fixed;
 		background: #f5f5f5;
 		height: 10vh;
 		left: 0;
@@ -78,6 +80,7 @@
 		display: flex;
 		flex-direction: row;
 		z-index: 999;
+		position: fixed;
 	}
 
 	.navbar-box {
