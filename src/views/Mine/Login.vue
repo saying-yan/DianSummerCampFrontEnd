@@ -50,7 +50,8 @@ export default {
 					{ required: true, message: "请输入密码", trigger: "blur" },
 					{ min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
 				]
-			}
+			},
+			isLogin: false,
 		}
 	},
 	methods: {
@@ -62,8 +63,9 @@ export default {
 				if (!isvalid) return;
 				this.$store.dispatch('login', this.loginForm)
 					.then(token => {
-						console.log('token')
-						console.log(token)
+						// console.log('token')
+						// console.log(token)
+						this.isLogin = true
 						localStorage.setItem('islogin', 1)
 						localStorage.setItem('token', token)
 						this.$router.replace('/Mine')
@@ -79,8 +81,9 @@ export default {
 		}
 	},
 	mounted() {
-		console.log('login')
-		this.$emit('onEmitMine', ['返回', '/Mine'])
+		if (localStorage.getItem('isLogin') != null) {
+			this.isLogin = localStorage.getItem('isLogin')
+		}
 	}
 }
 </script>

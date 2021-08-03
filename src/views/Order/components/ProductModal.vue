@@ -1,5 +1,5 @@
 <template>
-	<div class="product-modal" :show="visible">
+	<div class="product-modal" v-if="visible">
 		<div class="header">
 			<img :src="this.product.img" >
 		</div>

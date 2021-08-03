@@ -39,7 +39,6 @@ const store = new Vuex.Store({
 				return Promise.resolve(true)
 			}
 		},
-		
 		async getProductListInfo({ commit }) {
 			const { data } = await getProductListInfoAPI()
 			if (data.status === 'error') {
